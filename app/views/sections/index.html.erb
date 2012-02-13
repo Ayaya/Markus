@@ -13,7 +13,8 @@
   </div>
 <% end %>
 
-<%= link_to I18n.t('section.add_section'), new_section_path %>
+<%= link_to I18n.t('section.add_section'), new_section_path,
+	:onclick => session[:original_uri] = request.fullpath %>
 <% if @sections.empty? %>
   <p><%= I18n.t('section.no_sections') %></p>
 <% else %>
