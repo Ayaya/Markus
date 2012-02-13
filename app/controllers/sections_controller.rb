@@ -22,7 +22,11 @@ class SectionsController < ApplicationController
                                :name => @section.name)
       uri = session[:original_uri]
       session[:original_uri] = nil
-      redirect_to uri
+      if uri
+        redirect_to uri
+      else
+        redirect_to :action => 'index'
+      end
       return
     else
       flash[:error] = I18n.t('section.create.error')
