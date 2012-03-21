@@ -3,7 +3,30 @@ class SubmissionRule < ActiveRecord::Base
   belongs_to :assignment
   has_many :periods, :dependent => :destroy, :order => 'id'
   accepts_nested_attributes_for :periods, :allow_destroy => true
+  
+  validate :requires_interval_validation
+  validate :requires_deduction_validation
 
+  def requires_interval_validation
+    if self.type == "PenaltyDecayPeriodSubmissionRule"
+      if self.periods.last.interval.blank?
+        self.errors.add(:periods, 'interval can\'t be blank')
+        return
+      end
+      self.errors.add(:periods, 'interval must be greater than or equal to 0') if self.periods.last.interval < 0
+    end
+  end
+   
+  def requires_deduction_validation
+    if self.type == "PenaltyDecayPeriodSubmissionRule" || self.type == "PenaltyPeriodSubmissionRule"
+      if self.periods.last.deduction.blank?
+        self.errors.add(:periods, 'deduction can\'t be blank')
+        return
+      end
+      self.errors.add(:periods, 'deduction must be greater than or equal to 0') if self.periods.last.deduction < 0
+    end
+  end
+   
 #  validates_associated :assignment
 #  validates_presence_of :assignment
 
