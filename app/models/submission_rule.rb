@@ -16,7 +16,7 @@ class SubmissionRule < ActiveRecord::Base
       self.errors.add(:periods, 'interval must be greater than or equal to 0') if self.periods.last.interval < 0
     end
   end
- 
+
   def requires_deduction_validation
     if self.type == "PenaltyDecayPeriodSubmissionRule" || self.type == "PenaltyPeriodSubmissionRule"
       if self.periods.last.deduction.blank?
@@ -26,7 +26,7 @@ class SubmissionRule < ActiveRecord::Base
       self.errors.add(:periods, 'deduction must be greater than or equal to 0') if self.periods.last.deduction < 0
     end
   end
- 
+
 #  validates_associated :assignment
 #  validates_presence_of :assignment
 
