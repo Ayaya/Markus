@@ -785,6 +785,8 @@ fr:
         description: "This is the description of the SubmissionRule class.  Since only subclasses of SubmissionRule should be attached to an Assignment, this message should never be seen." #TODO
         commit_after_collection_message: "Ce message est affiché aux étudiants quand ils envoient leur code après la date de récupération des projets par le correcteur. Since SubmissionRule is to be subclassed, and not referenced directly by an Assignment, this particular message should never be displayed to students." #TODO
         overtime_message:  "Ce message est affiché aux étudiants quand ils sont dans le gestionnaire de fichiers après que la date de retour du projet est passée."
+        blank_field: "doit être rempli(e)"
+        number_field: "peut seulement être supérieur ou égal à 0"
 
       no_late_submission_rule:
         name: "Pas De Règle Pour Les Travaux En Retards"
