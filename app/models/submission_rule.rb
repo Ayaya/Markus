@@ -10,17 +10,17 @@ class SubmissionRule < ActiveRecord::Base
     # validation for interval attribute
     if self.type == "PenaltyDecayPeriodSubmissionRule"
       if self.periods.last.interval.blank?
-        self.errors.add(:periods, 'interval '+I18n.t("submission_rules.submission_rule.blank_field"))
+        self.errors.add(:periods, I18n.t("submission_rules.submission_rule.interval_blank_field"))
       elsif self.periods.last.interval < 0
-        self.errors.add(:periods, 'interval '+I18n.t("submission_rules.submission_rule.number_field"))
+        self.errors.add(:periods, I18n.t("submission_rules.submission_rule.interval_number_field"))
       end
     end
     # validation for deduction attribute
     if self.type == "PenaltyDecayPeriodSubmissionRule" || self.type == "PenaltyPeriodSubmissionRule"
       if self.periods.last.deduction.blank?
-        self.errors.add(:periods, 'deduction '+I18n.t("submission_rules.submission_rule.blank_field"))
+        self.errors.add(:periods, I18n.t("submission_rules.submission_rule.deduction_blank_field"))
       elsif self.periods.last.deduction < 0
-        self.errors.add(:periods, 'deduction '+I18n.t("submission_rules.submission_rule.number_field"))
+        self.errors.add(:periods, I18n.t("submission_rules.submission_rule.deduction_number_field"))
       end
     end
   end

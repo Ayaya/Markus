@@ -798,8 +798,10 @@ en:
         description: "This is the description of the SubmissionRule class.  Since only subclasses of SubmissionRule should be attached to an Assignment, this message should never be seen."
         commit_after_collection_message: "This message is displayed when students submit code after the collection date.  Since SubmissionRule is to be subclassed, and not referenced directly by an Assignment, this particular message should never be displayed to students."
         overtime_message:  "This message is displayed to students when they view their file manager after the assignment due date has passed."
-        blank_field: "can't be blank"
-        number_field: "can only be greater than or equal to 0"
+        deduction_blank_field: "deduction can't be blank"
+        deduction_number_field: "deduction can only be greater than or equal to 0"
+        interval_blank_field: "interval can't be blank"
+        interval_number_field: "interval can only be greater than or equal to 0"
         
       no_late_submission_rule:
         name: "No Late Submission Rule"
