@@ -15,6 +15,9 @@ class PenaltyPeriodSubmissionRuleTest < ActiveSupport::TestCase
       StudentMembership.make(:grouping => @grouping,
                              :membership_status => "inviter")
       penalty_period_submission_rule = PenaltyPeriodSubmissionRule.new
+      # Add two 24 hour penalty periods, each with a 10% penalty
+      add_period_helper(penalty_period_submission_rule, 24, 10)
+      add_period_helper(penalty_period_submission_rule, 24, 10)
       @assignment.replace_submission_rule(penalty_period_submission_rule)
       penalty_period_submission_rule.save
 
@@ -22,10 +25,7 @@ class PenaltyPeriodSubmissionRuleTest < ActiveSupport::TestCase
       pretend_now_is(Time.parse("July 1 2009 1:00PM")) do
         # Due date is July 23 @ 5PM
         @assignment.due_date = Time.parse("July 23 2009 5:00PM")
-        # Add two 24 hour penalty periods, each with a 10% penalty
         # Overtime begins at July 23 @ 5PM
-        add_period_helper(@assignment.submission_rule, 24, 10)
-        add_period_helper(@assignment.submission_rule, 24, 10)
         # Collect date is now after July 25 @ 5PM
         @assignment.save
       end
@@ -224,11 +224,7 @@ class PenaltyPeriodSubmissionRuleTest < ActiveSupport::TestCase
   end
 
   def add_period_helper(submission_rule, hours, deduction_amount)
-    period = Period.new
-    period.submission_rule = submission_rule
-    period.hours = hours
-    period.deduction = deduction_amount
-    period.save
+    submission_rule.periods.push(Period.new(:hours => hours, :deduction => deduction_amount))
   end
 
 

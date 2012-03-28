@@ -8,6 +8,7 @@ class PenaltyDecayPeriodSubmissionRuleTest < ActiveSupport::TestCase
 
   should "be able to create PenaltyDecayPeriodSubmissionRule" do
     rule = PenaltyDecayPeriodSubmissionRule.new
+    rule.periods.push(Period.new(:hours => 24, :deduction => 10, :interval => 12))
     rule.assignment = Assignment.make
     assert rule.save
   end
@@ -20,6 +21,7 @@ class PenaltyDecayPeriodSubmissionRuleTest < ActiveSupport::TestCase
       @membership = StudentMembership.make(:grouping => @grouping, :membership_status => StudentMembership::STATUSES[:inviter])
       @assignment = @grouping.assignment
       @rule = PenaltyDecayPeriodSubmissionRule.new
+      @rule.periods.push(Period.new(:hours => 24, :deduction => 10, :interval => 8))
       @assignment.replace_submission_rule(@rule)
       PenaltyDecayPeriodSubmissionRule.destroy_all
       @rule.save
