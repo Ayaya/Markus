@@ -70,7 +70,7 @@ class SubmissionRuleTest < ActiveSupport::TestCase
   context "Penalty period ids" do
     setup do
 
-	  # Create SubmissionRule with default type 'PenaltyPeriodSubmissionRule'#
+	  # Create SubmissionRule with default type 'PenaltyPeriodSubmissionRule'
 	  @submission_rule = PenaltyPeriodSubmissionRule.make
 	  sub_rule_id = @submission_rule.id
 
