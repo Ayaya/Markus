@@ -263,11 +263,14 @@ end
 PenaltyPeriodSubmissionRule.blueprint do
   assignment_id {0}
   type {'PenaltyPeriodSubmissionRule'}
+  periods {Period.make}
 end
 
 Period.blueprint do
   submission_rule_id {0}
   hours {rand(24)}
+  deduction {10}
+  interval {10}
 end
 
 Ta.blueprint do
