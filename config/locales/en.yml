@@ -802,7 +802,7 @@ en:
         deduction_number_field: "deduction can only be greater than or equal to 0"
         interval_blank_field: "interval can't be blank"
         interval_number_field: "interval can only be greater than or equal to 0"
-        
+
       no_late_submission_rule:
         name: "No Late Submission Rule"
         description: "No penalties will be applied to late assignments"
