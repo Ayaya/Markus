@@ -71,14 +71,14 @@ class SubmissionRuleTest < ActiveSupport::TestCase
     setup do
 
 	  # Create SubmissionRule with default type 'PenaltyPeriodSubmissionRule'#
-	  @submission_rule = PenaltyPeriodSubmissionRule.make()
+	  @submission_rule = PenaltyPeriodSubmissionRule.make
 	  sub_rule_id = @submission_rule.id
 
 	  # Randomly create five periods for this SubmissionRule (ids unsorted):
 
 	  # Create the first period
-    @period = Period.make(:submission_rule_id => sub_rule_id)
-    first_period_id = @period.id
+	  @period = Period.make(:submission_rule_id => sub_rule_id)
+	  first_period_id = @period.id
 
 	  # Create two other periods
 	  @period = Period.make(:id => first_period_id + 2, :submission_rule_id => sub_rule_id)

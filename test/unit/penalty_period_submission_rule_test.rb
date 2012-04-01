@@ -18,6 +18,7 @@ class PenaltyPeriodSubmissionRuleTest < ActiveSupport::TestCase
       # Add two 24 hour penalty periods, each with a 10% penalty
       add_period_helper(penalty_period_submission_rule, 24, 10)
       add_period_helper(penalty_period_submission_rule, 24, 10)
+      # Collect date is now after July 25 @ 5PM
       @assignment.replace_submission_rule(penalty_period_submission_rule)
       penalty_period_submission_rule.save
 
@@ -26,7 +27,6 @@ class PenaltyPeriodSubmissionRuleTest < ActiveSupport::TestCase
         # Due date is July 23 @ 5PM
         @assignment.due_date = Time.parse("July 23 2009 5:00PM")
         # Overtime begins at July 23 @ 5PM
-        # Collect date is now after July 25 @ 5PM
         @assignment.save
       end
       # On July 15, the Student logs in, triggering repository folder
