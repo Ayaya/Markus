@@ -263,7 +263,7 @@ end
 PenaltyPeriodSubmissionRule.blueprint do
   assignment_id {0}
   type {'PenaltyPeriodSubmissionRule'}
-  periods {Period.make}
+  periods{[Period.make]}
 end
 
 Period.blueprint do

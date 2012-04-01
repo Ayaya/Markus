@@ -70,15 +70,15 @@ class SubmissionRuleTest < ActiveSupport::TestCase
   context "Penalty period ids" do
     setup do
 
-	  # Create SubmissionRule with default type 'PenaltyPeriodSubmissionRule'
-	  @submission_rule = PenaltyPeriodSubmissionRule.make
+	  # Create SubmissionRule with default type 'PenaltyPeriodSubmissionRule'#
+	  @submission_rule = PenaltyPeriodSubmissionRule.make()
 	  sub_rule_id = @submission_rule.id
 
 	  # Randomly create five periods for this SubmissionRule (ids unsorted):
 
 	  # Create the first period
-	  @period = Period.make(:submission_rule_id => sub_rule_id)
-	  first_period_id = @period.id
+    @period = Period.make(:submission_rule_id => sub_rule_id)
+    first_period_id = @period.id
 
 	  # Create two other periods
 	  @period = Period.make(:id => first_period_id + 2, :submission_rule_id => sub_rule_id)
@@ -92,7 +92,7 @@ class SubmissionRuleTest < ActiveSupport::TestCase
     should "sort in ascending order" do
 	  # Loop through periods for this SubmissionRule and verify the ids are sorted in ascending order
 	  previous_id = @submission_rule.periods[0][:id]
-	  for i in (1..4) do
+	  for i in (1..5) do
 	     assert @submission_rule.periods[i][:id] > previous_id
 	     previous_id = @submission_rule.periods[i][:id]
 	  end
